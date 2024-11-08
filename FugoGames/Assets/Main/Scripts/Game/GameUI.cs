@@ -7,26 +7,10 @@ namespace Main.Scripts.Game
     public class GameUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI levelText;
-        [SerializeField] private TextMeshProUGUI moveCountText;
-        [SerializeField] private GameObject infinitySign;
         
         public void SetLevelText(int level)
         {
             levelText.text = $"Level {level}";
-        }
-        
-        public void SetMoveCountText(int moveCount)
-        {
-            if (GameManager.InfinityMove == moveCount)
-            {
-                infinitySign.SetActive(true);
-                moveCountText.text = "Move";
-            }
-            else
-            {
-                infinitySign.SetActive(false);
-                moveCountText.text = $"Move {moveCount}";
-            }
         }
         
         public void ShowLevelWinDialog()
@@ -41,16 +25,6 @@ namespace Main.Scripts.Game
             var dialogPrefab = Resources.Load<LevelLoseDialog>("LevelLoseDialogPrefab");
             var dialog = Instantiate(dialogPrefab, transform);
             dialog.Show();
-        }
-        
-        public void SolveBoard()
-        {
-            ContextController.Instance.GameManager.SolveBoard();
-        }
-        
-        public void NextLevel()
-        {
-            ContextController.Instance.GameManager.NextLevel();
         }
         
         public void RestartLevel()

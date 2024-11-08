@@ -10,10 +10,10 @@ namespace Main.Scripts.General
         [SerializeField] private Camera mainCamera;
         [SerializeField] private GameUI gameUI;
         
-        public DataManager DataManager;
-        public GameInputController GameInputController;
-        public GameManager GameManager;
-        public CameraManager CameraManager;
+        public DataManager DataManager { get; private set; }
+        public GameInputController GameInputController { get; private set; }
+        public GameManager GameManager { get; private set; }
+        public CameraManager CameraManager { get; private set; }
         
         private void Awake()
         {

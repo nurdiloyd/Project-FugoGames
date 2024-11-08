@@ -1,6 +1,5 @@
 using DG.Tweening;
 using Main.Scripts.General;
-using Main.Scripts.Utils;
 using UnityEngine;
 
 namespace Main.Scripts.Game
@@ -13,7 +12,6 @@ namespace Main.Scripts.Game
         
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Collider boxCollider;
-        [SerializeField] private TrailRenderer[] trailRenderers;
         
         public int ID { get; private set; }
         
@@ -22,15 +20,7 @@ namespace Main.Scripts.Game
             ID = block.ID;
             
             var gameManager = ContextController.Instance.GameManager;
-            meshRenderer.material.mainTexture = gameManager.BoardAssets.GetBlockTexture(block.Length, block.BlockColor, block.BlockDirection.IsHorizontal());
-            
-            var matColor = gameManager.BoardAssets.GetGateColor(block.BlockColor);
-            foreach (var trailRenderer in trailRenderers)
-            {
-                trailRenderer.startColor = matColor;
-                matColor.a = 0;
-                trailRenderer.endColor = matColor;
-            }
+            meshRenderer.material.mainTexture = gameManager.BoardAssets.GetBlockTexture();
         }
         
         public void Select()

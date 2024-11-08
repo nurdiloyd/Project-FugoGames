@@ -36,8 +36,7 @@ namespace Main.Scripts.Game
                 var isHit = Physics.Raycast(ray, out var hit);
                 if (isHit && hit.transform.CompareTag(Constants.BlockTag))
                 {
-                    var blockView = hit.transform.GetComponent<BlockView>();
-                    _gameManager.SelectBlock(blockView.ID, out _block);
+                    _gameManager.SelectBlock();
                     _blockSelected = _block != null;
                 }
             }
@@ -49,9 +48,8 @@ namespace Main.Scripts.Game
                 var toward = _endPosition - _startPosition;
                 var rad = (int)Mathf.Round(Vector2.SignedAngle(Vector2.right, toward) / 90f);
                 var direction = new Vector2((1 - Mathf.Abs(rad)) % 2, rad % 2);
-                var moveDirection = direction.ToBlockDirection();
                 
-                if (_block.CanMoveOnAxis(moveDirection))
+                if (true)
                 {
                     var worldPointA = _startPosition;
                     worldPointA.z = _cameraManager.RenderDistance;
@@ -68,8 +66,8 @@ namespace Main.Scripts.Game
                     if (canMove)
                     {
                         _blockSelected = false;
-                        _gameManager.DeselectBlock(_block.ID);
-                        _gameManager.MoveBlock(_block.ID, moveDirection);
+                        _gameManager.DeselectBlock();
+                        _gameManager.MoveBlock();
                     }
                 }
             }
@@ -77,7 +75,7 @@ namespace Main.Scripts.Game
             if (Input.GetMouseButtonUp(0) && _blockSelected)
             {
                 _blockSelected = false;
-                _gameManager.DeselectBlock(_block.ID);
+                _gameManager.DeselectBlock();
             }
         }
     }
