@@ -6,7 +6,7 @@ namespace Main.Scripts.Game
 {
     public class TableController
     {
-        public bool IsThereAnyCard => _table.IsThereAnyCard;
+        public bool IsThereAnyCard => true;
         
         private GameManager _gameManager;
         private Table _table;
