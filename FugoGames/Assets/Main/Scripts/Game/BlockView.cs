@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Main.Scripts.General;
 using UnityEngine;
 
 namespace Main.Scripts.Game
@@ -18,9 +17,6 @@ namespace Main.Scripts.Game
         public void Init(Block block)
         {
             ID = block.ID;
-            
-            var gameManager = ContextController.Instance.GameManager;
-            meshRenderer.material.mainTexture = gameManager.BoardAssets.GetBlockTexture();
         }
         
         public void Select()
