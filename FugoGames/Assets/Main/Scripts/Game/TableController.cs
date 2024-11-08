@@ -16,6 +16,7 @@ namespace Main.Scripts.Game
             
             SpawnDeckRemaining();
             SpawnDeckOnCenter();
+            SpawnPlayerDecks();
         }
         
         private void SpawnDeckRemaining()
@@ -40,6 +41,30 @@ namespace Main.Scripts.Game
             {
                 var card = cards[i];
                 var pos = new Vector3(0f, i * 0.1f, 0);
+                var rot = Quaternion.Euler(90, 0, 0);
+                var cardView = Object.Instantiate(tableAssets.cardPrefab, pos, rot, _tableParent);
+                cardView.Init(card);
+            }
+        }
+        
+        private void SpawnPlayerDecks()
+        {
+            var tableAssets = ContextController.Instance.GameManager.TableAssets;
+            var cards = _table.Player1.DeckOnHand.Cards;
+            for (var i = 0; i < cards.Count; i++)
+            {
+                var card = cards[i];
+                var pos = new Vector3((0.5f + i - cards.Count / 2f) * 1.2f, 0f, -4f);
+                var rot = Quaternion.Euler(90, 0, 0);
+                var cardView = Object.Instantiate(tableAssets.cardPrefab, pos, rot, _tableParent);
+                cardView.Init(card);
+            }
+            
+            cards = _table.Player2.DeckOnHand.Cards;
+            for (var i = 0; i < cards.Count; i++)
+            {
+                var card = cards[i];
+                var pos = new Vector3((0.5f + i - cards.Count / 2f) * 1.2f, 0f, 4f);
                 var rot = Quaternion.Euler(90, 0, 0);
                 var cardView = Object.Instantiate(tableAssets.cardPrefab, pos, rot, _tableParent);
                 cardView.Init(card);

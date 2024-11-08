@@ -11,15 +11,15 @@ namespace Main.Scripts.Game
         private readonly Random _random = new();
         public readonly Deck DeckRemaining;
         public readonly Deck DeckOnCenter;
-        private readonly Player _player1;
-        private readonly Player _player2;
+        public readonly Player Player1;
+        public readonly Player Player2;
         
         public Table()
         {
             DeckRemaining = new Deck();
             DeckOnCenter = new Deck();
-            _player1 = new Player(false);
-            _player2 = new Player(true);
+            Player1 = new Player(false);
+            Player2 = new Player(true);
             
             FillDeckRemaining();
             InitialDeal();
@@ -41,10 +41,10 @@ namespace Main.Scripts.Game
         private void InitialDeal()
         {
             var cardsP1 = DeckRemaining.Draw(4);
-            _player1.AddCardsToHand(cardsP1);
+            Player1.AddCardsToHand(cardsP1);
             
             var cardsP2 = DeckRemaining.Draw(4);
-            _player2.AddCardsToHand(cardsP2);
+            Player2.AddCardsToHand(cardsP2);
             
             var cardsHidden = DeckRemaining.Draw(3); 
             DeckOnCenter.AddCard(cardsHidden);
@@ -57,10 +57,10 @@ namespace Main.Scripts.Game
         
         public void StartGame()
         {
-            while (DeckRemaining.CardsCount > 0 || _player1.DeckOnHand.CardsCount > 0)
+            while (DeckRemaining.CardsCount > 0 || Player1.DeckOnHand.CardsCount > 0)
             {
-                PlayTurn(_player1);
-                PlayTurn(_player2);
+                PlayTurn(Player1);
+                PlayTurn(Player2);
                 DealNewCards();
             }
             
@@ -95,13 +95,13 @@ namespace Main.Scripts.Game
         
         private void DealNewCards()
         {
-            if (DeckRemaining.CardsCount > 0 && _player1.DeckOnHand.CardsCount == 0 && _player2.DeckOnHand.CardsCount == 0)
+            if (DeckRemaining.CardsCount > 0 && Player1.DeckOnHand.CardsCount == 0 && Player2.DeckOnHand.CardsCount == 0)
             {
                 var cardsP1 = DeckRemaining.Draw(4);
-                _player1.AddCardsToHand(cardsP1);
+                Player1.AddCardsToHand(cardsP1);
             
                 var cardsP2 = DeckRemaining.Draw(4);
-                _player2.AddCardsToHand(cardsP2);
+                Player2.AddCardsToHand(cardsP2);
             }
         }
         
@@ -109,8 +109,8 @@ namespace Main.Scripts.Game
         {
             Debug.Log("Game Over!");
             
-            var player1Score = CalculateScore(_player1.DeckCollected.Cards);
-            var player2Score = CalculateScore(_player2.DeckCollected.Cards);
+            var player1Score = CalculateScore(Player1.DeckCollected.Cards);
+            var player2Score = CalculateScore(Player2.DeckCollected.Cards);
             
             Debug.Log($"Your Score: {player1Score}");
             Debug.Log($"Bot's Score: {player2Score}");
