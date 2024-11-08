@@ -17,6 +17,8 @@ namespace Main.Scripts.Game
             SpawnDeckRemaining();
             SpawnDeckOnCenter();
             SpawnPlayerDecks();
+            
+            _table.StartGame();
         }
         
         private void SpawnDeckRemaining()
@@ -69,10 +71,6 @@ namespace Main.Scripts.Game
                 var cardView = Object.Instantiate(tableAssets.cardPrefab, pos, rot, _tableParent);
                 cardView.Init(card);
             }
-        }
-        
-        public void StartGame()
-        {
         }
         
         public void Clear()

@@ -30,7 +30,6 @@ namespace Main.Scripts.Game
             _gameUI.SetLevelText(dataManager.User.levelIndex + 1);
             
             _tableController.Init();
-            _tableController.StartGame();
         }
         
         public void RestartLevel()
