@@ -1,4 +1,5 @@
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 namespace Main.Scripts.Game
@@ -11,9 +12,11 @@ namespace Main.Scripts.Game
         
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Collider boxCollider;
+        [SerializeField] private TextMeshPro infoText;
         
         public void Init(Card card)
         {
+            infoText.text = card.ToString();
         }
         
         public void Select()

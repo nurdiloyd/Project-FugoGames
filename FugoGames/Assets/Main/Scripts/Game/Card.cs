@@ -13,7 +13,7 @@ namespace Main.Scripts.Game
         
         public override string ToString()
         {
-            return $"{Rank} of {Suit}";
+            return $"{(int)Rank} {Suit}";
         }
     }
     
