@@ -7,15 +7,15 @@ namespace Main.Scripts.Game
     {
         public bool CanPlay => true;
         private bool HasMove => true;
-        public BoardAssets BoardAssets { get; private set; }
+        public TableAssets TableAssets { get; private set; }
         
         private GameUI _gameUI;
-        private GameBoardController _gameBoardController;
+        private TableController _tableController;
         
         public void Bind()
         {
-            BoardAssets = Resources.Load<BoardAssets>("BoardAssets");
-            _gameBoardController = new GameBoardController();
+            TableAssets = Resources.Load<TableAssets>("TableAssets");
+            _tableController = new TableController();
         }
         
         public void SetGameUI(GameUI gameUI)
@@ -25,28 +25,28 @@ namespace Main.Scripts.Game
         
         public void LoadLevel()
         {
-            _gameBoardController.Clear();
+            _tableController.Clear();
             var dataManager = ContextController.Instance.DataManager;
-            _gameBoardController.Init();
+            _tableController.Init();
             _gameUI.SetLevelText(dataManager.User.levelIndex + 1);
         }
         
-        public void SelectBlock()
+        public void SelectCard()
         {
-            _gameBoardController.SelectBlock();
+            _tableController.SelectCard();
         }
         
-        public void DeselectBlock()
+        public void DeselectCard()
         {
-            _gameBoardController.DeselectBlock();
+            _tableController.DeselectCard();
         }
         
-        public void MoveBlock()
+        public void MoveCard()
         {
-            var isMoved = _gameBoardController.TryMoveBlock();
+            var isMoved = _tableController.TryMoveCard();
             if (isMoved)
             {
-                var isWin = !_gameBoardController.IsThereAnyBlock;
+                var isWin = !_tableController.IsThereAnyCard;
                 var isLose = !HasMove;
                 if (isWin)
                 {

@@ -1,10 +1,10 @@
 namespace Main.Scripts.Game
 {
-    public class Block
+    public class Card
     {
         public readonly int ID;
         
-        public Block(int id)
+        public Card(int id)
         {
             ID = id;
         }

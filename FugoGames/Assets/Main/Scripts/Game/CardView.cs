@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Main.Scripts.Game
 {
-    public class BlockView : MonoBehaviour
+    public class CardView : MonoBehaviour
     {
         private static readonly Color HighlightColor = new(0.1f, 0.1f, 0.1f);
         private static readonly Color DefaultColor = new(0.0f, 0.0f, 0.0f);
@@ -14,9 +14,9 @@ namespace Main.Scripts.Game
         
         public int ID { get; private set; }
         
-        public void Init(Block block)
+        public void Init(Card card)
         {
-            ID = block.ID;
+            ID = card.ID;
         }
         
         public void Select()

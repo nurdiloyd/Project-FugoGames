@@ -9,8 +9,8 @@ namespace Main.Scripts.Game
         private Vector3 _startPosition;
         private Vector3 _endPosition;
         private GameManager _gameManager;
-        private Block _block;
-        private bool _blockSelected;
+        private Card _card;
+        private bool _cardSelected;
         private const float SwipeLengthThreshold = 0.1f;
         private const float SwipeAngleThreshold = 45f;
         private CameraManager _cameraManager;
@@ -34,14 +34,14 @@ namespace Main.Scripts.Game
                 
                 var ray = _cameraManager.ScreenPointToRay(_startPosition);
                 var isHit = Physics.Raycast(ray, out var hit);
-                if (isHit && hit.transform.CompareTag(Constants.BlockTag))
+                if (isHit && hit.transform.CompareTag(Constants.CardTag))
                 {
-                    _gameManager.SelectBlock();
-                    _blockSelected = _block != null;
+                    _gameManager.SelectCard();
+                    _cardSelected = _card != null;
                 }
             }
             
-            if (Input.GetMouseButton(0) && _blockSelected)
+            if (Input.GetMouseButton(0) && _cardSelected)
             {
                 _endPosition = Input.mousePosition;
                 
@@ -62,20 +62,20 @@ namespace Main.Scripts.Game
                     var worldDistance = (worldPointA - worldPointB).magnitude;
                     var angle = Vector2.Angle(toward, direction);
                     
-                    var canMove = worldDistance > Board.CellWidth * SwipeLengthThreshold && angle < SwipeAngleThreshold;
+                    var canMove = worldDistance > SwipeLengthThreshold && angle < SwipeAngleThreshold;
                     if (canMove)
                     {
-                        _blockSelected = false;
-                        _gameManager.DeselectBlock();
-                        _gameManager.MoveBlock();
+                        _cardSelected = false;
+                        _gameManager.DeselectCard();
+                        _gameManager.MoveCard();
                     }
                 }
             }
             
-            if (Input.GetMouseButtonUp(0) && _blockSelected)
+            if (Input.GetMouseButtonUp(0) && _cardSelected)
             {
-                _blockSelected = false;
-                _gameManager.DeselectBlock();
+                _cardSelected = false;
+                _gameManager.DeselectCard();
             }
         }
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Main.Scripts.Game
 {
     [CreateAssetMenu]
-    public class BoardAssets : ScriptableObject
+    public class TableAssets : ScriptableObject
     {
         public Transform boardGround;
     }
