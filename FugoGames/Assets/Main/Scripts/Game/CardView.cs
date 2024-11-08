@@ -12,11 +12,8 @@ namespace Main.Scripts.Game
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private Collider boxCollider;
         
-        public int ID { get; private set; }
-        
         public void Init(Card card)
         {
-            ID = card.ID;
         }
         
         public void Select()

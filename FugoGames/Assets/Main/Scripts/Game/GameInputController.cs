@@ -9,7 +9,6 @@ namespace Main.Scripts.Game
         private Vector3 _startPosition;
         private Vector3 _endPosition;
         private GameManager _gameManager;
-        private Card _card;
         private bool _cardSelected;
         private const float SwipeLengthThreshold = 0.1f;
         private const float SwipeAngleThreshold = 45f;
@@ -36,8 +35,7 @@ namespace Main.Scripts.Game
                 var isHit = Physics.Raycast(ray, out var hit);
                 if (isHit && hit.transform.CompareTag(Constants.CardTag))
                 {
-                    _gameManager.SelectCard();
-                    _cardSelected = _card != null;
+                    _cardSelected = true;
                 }
             }
             
@@ -66,8 +64,6 @@ namespace Main.Scripts.Game
                     if (canMove)
                     {
                         _cardSelected = false;
-                        _gameManager.DeselectCard();
-                        _gameManager.MoveCard();
                     }
                 }
             }
@@ -75,7 +71,6 @@ namespace Main.Scripts.Game
             if (Input.GetMouseButtonUp(0) && _cardSelected)
             {
                 _cardSelected = false;
-                _gameManager.DeselectCard();
             }
         }
     }
